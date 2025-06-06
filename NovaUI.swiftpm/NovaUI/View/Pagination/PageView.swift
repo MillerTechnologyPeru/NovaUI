@@ -55,11 +55,11 @@ public extension PageView where SelectionValue == Int {
 
 struct PageViewPreview: View {
     
-    @State var selection = 1
+    @State var selection = 0
 
     var body: some View {
         VStack {
-            Text("Selection: \(selection)")
+            Text("Selection: \(selection + 1)")
             PageView(selection: $selection, indexBackgroundDisplayMode: .always) {
                 ForEach(0 ..< 3, id: \.self) {
                     Text("Page \($0 + 1)")
