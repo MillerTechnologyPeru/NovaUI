@@ -78,7 +78,7 @@ public struct TextInputField: View {
       }
       if (text.isEmpty || isValid) {
         Text(title)
-          .foregroundColor(text.isEmpty ? Color(.placeholderText) : .primary)
+          .foregroundColor(text.isEmpty ? placeholderTextColor : .primary)
           .offset(y: text.isEmpty ? 0 : -25)
           .scaleEffect(text.isEmpty ? 1: 0.8, anchor: .leading)
       }
@@ -95,6 +95,17 @@ public struct TextInputField: View {
     .padding(.top, 15)
     .animation(.default, value: text)
   }
+}
+
+extension TextInputField {
+    
+    var placeholderTextColor: Color {
+        #if os(iOS)
+        return Color(.placeholderText)
+        #else
+        return Color.gray
+        #endif
+    }
 }
 
 // MARK: - Clear Button

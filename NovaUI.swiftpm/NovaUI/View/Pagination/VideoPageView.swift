@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+@available(iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+@available(macOS, unavailable)
 public struct VideoPageView: View {
         
     let videos: [Video]
@@ -37,6 +39,8 @@ public struct VideoPageView: View {
 
 // MARK: - Supporting Types
 
+@available(iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+@available(macOS, unavailable)
 internal extension VideoPageView {
     
     struct VideoView: View {
@@ -96,6 +100,8 @@ internal extension VideoPageView {
 
 // MARK: Model
 
+@available(iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+@available(macOS, unavailable)
 public extension VideoPageView {
     
     struct Video: Equatable, Hashable, Codable, Identifiable {
@@ -114,6 +120,8 @@ public extension VideoPageView {
 
 // MARK: - Preview
 
+@available(iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+@available(macOS, unavailable)
 public extension VideoPageView {
     
     struct Preview: View {
@@ -160,6 +168,8 @@ public extension VideoPageView {
     }
 }
 
+@available(iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+@available(macOS, unavailable)
 #Preview {
     NavigationView {
         VideoPageView.Preview()

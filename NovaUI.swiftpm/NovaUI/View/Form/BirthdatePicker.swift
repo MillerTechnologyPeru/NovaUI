@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 /// Birthdate picker for month and day.
+@available(macOS, unavailable)
 public struct BirthdatePicker: View {
     
     @Binding
@@ -45,11 +46,13 @@ public struct BirthdatePicker: View {
     }
 }
 
+@available(macOS, unavailable)
 public extension BirthdatePicker {
     
     typealias Selection = Birthday
 }
 
+@available(macOS, unavailable)
 extension BirthdatePicker {
     
     struct PreviewView: View {
@@ -77,6 +80,7 @@ extension BirthdatePicker {
     }
 }
 
+@available(macOS, unavailable)
 #Preview {
     NavigationView {
         BirthdatePicker.PreviewView()

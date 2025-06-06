@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 /// SwiftUI Page View
+@available(iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+@available(macOS, unavailable)
 public struct PageView<SelectionValue, Content>: View where SelectionValue: Hashable, Content: View {
     
     @Binding var selection: SelectionValue
@@ -37,6 +39,8 @@ public struct PageView<SelectionValue, Content>: View where SelectionValue: Hash
     }
 }
 
+@available(iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+@available(macOS, unavailable)
 public extension PageView where SelectionValue == Int {
     
     init(
@@ -53,6 +57,8 @@ public extension PageView where SelectionValue == Int {
 
 // MARK: - Preview
 
+@available(iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+@available(macOS, unavailable)
 struct PageViewPreview: View {
     
     @State var selection = 0
@@ -70,6 +76,8 @@ struct PageViewPreview: View {
     }
 }
 
+@available(iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+@available(macOS, unavailable)
 #Preview {
     NavigationView {
         PageViewPreview()

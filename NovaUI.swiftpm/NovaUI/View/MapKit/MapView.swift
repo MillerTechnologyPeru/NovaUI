@@ -158,7 +158,7 @@ public extension MapView {
 
 // MARK: - UIViewRepresentable
 
-#if canImport(UIKit)
+#if canImport(UIKit) && os(iOS)
 
 extension MapView: UIViewRepresentable {
     
@@ -181,7 +181,8 @@ extension MapView: UIViewRepresentable {
 
 // MARK: - NSViewRepresentable
 
-#if canImport(AppKit)
+#if canImport(AppKit) && os(macOS)
+
 extension MapView: NSViewRepresentable {
     
     public func makeNSView(context: Context) -> MKMapView {
@@ -191,7 +192,7 @@ extension MapView: NSViewRepresentable {
     }
     
     public func updateNSView(_ view: MKMapView, context: Context) {
-        configureView(view, animated: true)
+        configureView(view, animated: true, context: context)
     }
     
     public func makeCoordinator() -> Coordinator {
@@ -258,6 +259,11 @@ struct MapPreviewView: View {
 internal extension MapPreviewView {
     
     init() {
+        #if os(iOS)
+        let image = UIImage(systemName: "mappin")!
+        #elseif os(macOS)
+        let image = NSImage(named: NSImage.applicationIconName)!
+        #endif
         self.init(
             mapType: .standard,
             annotations: [
@@ -278,7 +284,7 @@ internal extension MapPreviewView {
                     subtitle: "106 Via Duomo"
                 )
             ],
-            pinImage: .init(systemName: "mappin")!
+            pinImage: image
         )
     }
     
@@ -303,7 +309,13 @@ internal extension MapPreviewView {
 
 internal extension MKAnnotationView {
     
+    #if os(iOS)
     typealias Image = UIImage
+    #elseif os(macOS)
+    typealias Image = NSImage
+    #else
+    typealias Image = Never
+    #endif
 }
 
 @objc(NovaUITestAnnotation)
