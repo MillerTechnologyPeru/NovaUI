@@ -4,8 +4,10 @@ import PackageDescription
 let package = Package(
     name: "NovaUI",
     platforms: [
-        .iOS(.v16),
-        .macOS(.v11)
+        .macOS(.v11),
+        .iOS(.v15),
+        .watchOS(.v9),
+        .tvOS(.v15)
     ],
     products: [
         .library(
