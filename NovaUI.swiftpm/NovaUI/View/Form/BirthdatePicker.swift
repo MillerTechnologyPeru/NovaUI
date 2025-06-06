@@ -50,8 +50,6 @@ public extension BirthdatePicker {
     typealias Selection = Birthday
 }
 
-#if DEBUG
-
 extension BirthdatePicker {
     
     struct PreviewView: View {
@@ -84,5 +82,3 @@ extension BirthdatePicker {
         BirthdatePicker.PreviewView()
     }
 }
-
-#endif

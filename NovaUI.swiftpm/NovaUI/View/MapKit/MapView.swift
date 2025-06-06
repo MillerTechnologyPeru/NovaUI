@@ -203,85 +203,84 @@ extension MapView: NSViewRepresentable {
 // MARK: - Preview
 
 #if DEBUG
-struct MapView_Preview: PreviewProvider {
-    
-    static var previews: some View {
-        NavigationView {
-            PreviewView(
-                mapType: .standard,
-                annotations: [
-                    TestAnnotation(
-                        coordinate: .init(
-                            latitude: 34.454439,
-                            longitude: -81.928657
-                        ),
-                        title: "Home",
-                        subtitle: "240 Fishers Cove Rd"
-                    ),
-                    TestAnnotation(
-                        coordinate: .init(
-                            latitude: 28.454439,
-                            longitude: -80.928657
-                        ),
-                        title: "Work",
-                        subtitle: "106 Via Duomo"
-                    )
-                ],
-                pinImage: MKAnnotationView.Image(systemName: "mappin")!
-            )
-        }
+#Preview {
+    NavigationView {
+        MapPreviewView()
     }
 }
+#endif
 
-extension MapView_Preview {
+struct MapPreviewView: View {
     
-    struct PreviewView: View {
-        
-        let mapType: MKMapType
-        
-        let annotations: [TestAnnotation]
-        
-        @State
-        var shownItems = [TestAnnotation]()
-        
-        let pinImage: MKAnnotationView.Image
-        
-        @State
-        var showsUserLocation = false
-        
-        @State
-        var region: MKCoordinateRegion = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(
-                latitude: 34.454439,
-                longitude: -81.928657
-            ),
-            span: MKCoordinateSpan(
-                latitudeDelta: 16,
-                longitudeDelta: 16
-            )
+    let mapType: MKMapType
+    
+    let annotations: [TestAnnotation]
+    
+    @State
+    var shownItems = [TestAnnotation]()
+    
+    let pinImage: MKAnnotationView.Image
+    
+    @State
+    var showsUserLocation = false
+    
+    @State
+    var region: MKCoordinateRegion = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(
+            latitude: 34.454439,
+            longitude: -81.928657
+        ),
+        span: MKCoordinateSpan(
+            latitudeDelta: 16,
+            longitudeDelta: 16
         )
-        
-        @State
-        private var userTrackingMode: MKUserTrackingMode = .none
-        
-        @State
-        private var didRegisterView = false
-        
-        var body: some View {
-            MapView(
-                mapType: mapType,
-                region: $region,
-                userTrackingMode: $userTrackingMode,
-                annotationItems: annotations,
-                configureAnnotationView: configureAnnotationView,
-                calloutAccessoryControlTapped: calloutAccessoryControlTapped
-            )
-            .edgesIgnoringSafeArea(.all)
-        }
+    )
+    
+    @State
+    private var userTrackingMode: MKUserTrackingMode = .none
+    
+    @State
+    private var didRegisterView = false
+    
+    var body: some View {
+        MapView(
+            mapType: mapType,
+            region: $region,
+            userTrackingMode: $userTrackingMode,
+            annotationItems: annotations,
+            configureAnnotationView: configureAnnotationView,
+            calloutAccessoryControlTapped: calloutAccessoryControlTapped
+        )
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
-internal extension MapView_Preview.PreviewView {
+internal extension MapPreviewView {
+    
+    init() {
+        self.init(
+            mapType: .standard,
+            annotations: [
+                TestAnnotation(
+                    coordinate: .init(
+                        latitude: 34.454439,
+                        longitude: -81.928657
+                    ),
+                    title: "Home",
+                    subtitle: "240 Fishers Cove Rd"
+                ),
+                TestAnnotation(
+                    coordinate: .init(
+                        latitude: 28.454439,
+                        longitude: -80.928657
+                    ),
+                    title: "Work",
+                    subtitle: "106 Via Duomo"
+                )
+            ],
+            pinImage: .init(systemName: "mappin")!
+        )
+    }
     
     func configureAnnotationView(mapView: MKMapView, annotation: TestAnnotation) -> MKAnnotationView {
         print("Will configure annotation \(annotation.title ?? "")")
@@ -307,7 +306,7 @@ internal extension MKAnnotationView {
     typealias Image = UIImage
 }
 
-@objc(TestAnnotation)
+@objc(NovaUITestAnnotation)
 internal final class TestAnnotation: NSObject, MKAnnotation {
     
     @objc
@@ -330,5 +329,4 @@ internal final class TestAnnotation: NSObject, MKAnnotation {
     }
 }
 
-#endif
 #endif
