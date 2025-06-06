@@ -8,7 +8,7 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "My App",
+    name: "NovaUI",
     platforms: [
         .iOS("18.1")
     ],
@@ -16,6 +16,7 @@ let package = Package(
         .iOSApplication(
             name: "NovaUI",
             targets: ["NovaUI"],
+            teamIdentifier: "4W79SG34MW",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .placeholder(icon: .butterfly),
