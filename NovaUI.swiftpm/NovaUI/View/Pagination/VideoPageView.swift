@@ -115,6 +115,20 @@ public extension VideoPageView {
         public let previewImageURL: URL
         
         public let previewVideoURL: URL?
+        
+        public init(
+            id: String,
+            title: String,
+            description: String,
+            previewImageURL: URL,
+            previewVideoURL: URL?
+        ) {
+            self.id = id
+            self.title = title
+            self.description = description
+            self.previewImageURL = previewImageURL
+            self.previewVideoURL = previewVideoURL
+        }
     }
 }
 
